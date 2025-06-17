@@ -7,14 +7,18 @@ const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body; // Destructures request body
   if (!name || !email || !password) {
     // Validates input
-    res.status(400); // Sets 400 status
-    throw new Error("Please include all fields"); // Throws error
+    res.status(400).json({
+        status: "error", // Sets response status
+        message: "Please include all fields", // Error message
+    }); // Throws error
   }
   const userExists = await User.findOne({ email }); // Checks for existing user
   if (userExists) {
     // If user exists
-    res.status(400); // Sets 400 status
-    throw new Error("User already exists"); // Throws error
+    res.status(400).json({
+        status: "error", // Sets response status
+        message: "user already exists", // Error message
+    }); // Throws error
   }
   const user = await User.create({ name, email, password }); // Creates user
   if (user) {
@@ -23,8 +27,10 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json({ _id: user._id, name, email, token }); // Sends response
   } else {
     // If creation failed
-    res.status(400); // Sets 400 status
-    throw new Error("Invalid user data"); // Throws error
+    res.status(400).json({
+        status: "error", // Sets response status
+        message: "invalid user data", // Error message
+    }); // Throws error
   }
 });
 
@@ -38,8 +44,10 @@ const loginUser = asyncHandler(async (req, res) => {
     res.json({ _id: user._id, name: user.name, email, token }); // Sends response
   } else {
     // If invalid
-    res.status(401); // Sets 401 status
-    throw new Error("Invalid email or password"); // Throws error
+    res.status(401).json({
+        status: "error", // Sets response status
+        message: "invalid email or password", // Error message
+    }); // Throws error
   }
 });
 
