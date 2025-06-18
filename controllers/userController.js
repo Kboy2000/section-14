@@ -35,9 +35,12 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
+  
   // Handles user login
   const { email, password } = req.body; // Destructures request body
   const user = await User.findOne({ email }); // Finds user by email
+  console.log(req.user);
+  
   if (user && (await user.matchPassword(password))) {
     // Validates credentials
     const token = generateToken(user._id); // Generates token
@@ -52,6 +55,8 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getMe = asyncHandler(async (req, res) => {
+    console.log(req.user);
+
   // Gets current user
   res.status(200).json(req.user); // Sends user data
 });
