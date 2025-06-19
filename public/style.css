@@ -1,0 +1,68 @@
+body {
+  /* Styles body */
+  font-family: Arial, sans-serif; /* Sets font */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+}
+
+.container {
+  /* Styles container */
+  max-width: 600px; /* Sets max width */
+  margin: 50px auto; /* Centers container */
+  padding: 20px; /* Adds padding */
+}
+
+h1,
+h2 {
+  /* Styles headings */
+  text-align: center; /* Centers text */
+}
+
+form {
+  /* Styles form */
+  display: flex; /* Uses flexbox */
+  flex-direction: column; /* Stacks elements */
+  gap: 15px; /* Adds spacing */
+}
+
+label {
+  /* Styles labels */
+  font-weight: bold; /* Makes text bold */
+}
+
+input {
+  /* Styles inputs */
+  padding: 8px; /* Adds padding */
+  font-size: 16px; /* Sets font size */
+}
+
+button {
+  /* Styles buttons */
+  padding: 10px; /* Adds padding */
+  background-color: #007bff; /* Sets background */
+  color: white; /* Sets text color */
+  border: none; /* Removes border */
+  cursor: pointer; /* Adds pointer cursor */
+}
+
+button:hover {
+  /* Styles button hover */
+  background-color: #0056b3; /* Darkens background */
+}
+
+.error {
+  /* Styles error messages */
+  color: red; /* Sets color */
+  text-align: center; /* Centers text */
+}
+
+a {
+  /* Styles links */
+  color: #007bff; /* Sets color */
+  text-decoration: none; /* Removes underline */
+}
+
+a:hover {
+  /* Styles link hover */
+  text-decoration: underline; /* Adds underline */
+}

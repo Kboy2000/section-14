@@ -13,7 +13,7 @@ app.engine("jsx", erv.createEngine()); // Configures express-react-views
 app.use(express.json()); // Parses JSON
 app.use(express.urlencoded({ extended: false })); // Parses URL-encoded data
 app.use(express.static(path.join(__dirname, "public"))); // Serves static files
-app.use("/api/users", require("./routes/userRoutes")); // Mounts API routes
+app.use("/api/users", require("./routes/userRoute")); // Mounts API routes
 app.get("/", (req, res) => res.render("Home")); // Renders Home page
 app.get("/login", (req, res) => res.render("Login")); // Renders Login page
 app.get("/signup", (req, res) => res.render("Signup")); // Renders Signup page
