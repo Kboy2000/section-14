@@ -8,8 +8,7 @@ const Home = () => {
       <h1>Welcome to the Auth App</h1> {/* Page title */}
       <p>
         Navigate to <a href="/login">Login</a> or <a href="/signup">Signup</a>.
-      </p>{" "}
-      {/* Navigation links */}
+      </p>
     </div>
   );
 };

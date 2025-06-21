@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react"; // Imports React and useState
+import React, { useState } from "react"; // Imports React and useState
 import axios from "axios"; // Imports axios for API calls
+// If you use react-router-dom for navigation, uncomment the next line:
+// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // Defines Login component
+  // const navigate = useNavigate(); // Uncomment if using react-router-dom
   const [email, setEmail] = useState(""); // State for email
   const [password, setPassword] = useState(""); // State for password
   const [error, setError] = useState(""); // State for error message
@@ -10,10 +12,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     // Handles form submission
     e.preventDefault(); // Prevents default form behavior
+    setError(""); // Clear previous errors
     try {
       // Starts try block
       const res = await axios.post("/api/users/login", { email, password }); // Sends login request
       localStorage.setItem("token", res.data.token); // Stores token
+      // Use SPA navigation if using react-router-dom:
+      // navigate("/profile");
       window.location.href = "/profile"; // Redirects to profile
     } catch (err) {
       // Catches errors
@@ -21,30 +26,37 @@ const Login = () => {
     }
   };
 
-
   return (
     // Returns JSX
     <div className="container">
       <h2>Login</h2> {/* Page title */}
       {error && <p className="error">{error}</p>} {/* Displays error */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         {" "}
         {/* Form with submit handler */}
         <div>
-          <label>Email:</label> {/* Email label */}
+          <label htmlFor="email">Email:</label> {/* Email label */}
           <input
+            id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Updates email state
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(""); // Clear error on input
+            }} // Updates email state
             required
           />
         </div>
         <div>
-          <label>Password:</label> {/* Password label */}
+          <label htmlFor="password">Password:</label> {/* Password label */}
           <input
+            id="password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // Updates password state
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError(""); // Clear error on input
+            }} // Updates password state
             required
           />
         </div>
